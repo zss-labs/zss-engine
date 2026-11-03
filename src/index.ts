@@ -38,5 +38,4 @@ export {
   sourcePackages,
   resolveSourcePackage,
   inSourcePackage,
-  sourcePackageFiles,
 } from './utils/source-packages.js';
