@@ -7,10 +7,10 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zss-in-js/zss-engine.git"
+    "url": "git+https://github.com/zss-labs/zss-engine.git"
   },
   "bugs": {
-    "url": "https://github.com/zss-in-js/zss-engine/issues"
+    "url": "https://github.com/zss-labs/zss-engine/issues"
   },
   "keywords": [
     "stylesheet",
