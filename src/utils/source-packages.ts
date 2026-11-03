@@ -8,9 +8,6 @@ export type SourcePackage = {
   sourceDirs: string[];
 };
 
-const SKIPPED_DIRS = new Set(['node_modules', 'dist', 'build', '.next']);
-const SOURCE_FILE = /\.(js|jsx|ts|tsx)$/;
-
 const readJson = (file: string): any => {
   try {
     return JSON.parse(fs.readFileSync(file, 'utf8'));
@@ -143,17 +140,4 @@ export function inSourcePackage(
   return packages.some((pkg) =>
     pkg.sourceDirs.some((dir) => file.startsWith(dir + path.sep)),
   );
-}
-
-const filesIn = (dir: string): string[] =>
-  fs.readdirSync(dir, { withFileTypes: true }).flatMap((entry) => {
-    const entryPath = path.join(dir, entry.name);
-    if (entry.isDirectory()) {
-      return SKIPPED_DIRS.has(entry.name) ? [] : filesIn(entryPath);
-    }
-    return SOURCE_FILE.test(entry.name) ? [entryPath] : [];
-  });
-
-export function sourcePackageFiles(packages: SourcePackage[]): string[] {
-  return packages.flatMap((pkg) => pkg.sourceDirs.flatMap(filesIn));
 }
