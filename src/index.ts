@@ -33,3 +33,10 @@ export {
   counterpartOf,
   spellingOf,
 } from './utils/logicalPhysical.js';
+export type { SourcePackage } from './utils/source-packages.js';
+export {
+  sourcePackages,
+  resolveSourcePackage,
+  inSourcePackage,
+  sourcePackageFiles,
+} from './utils/source-packages.js';
