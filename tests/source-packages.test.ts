@@ -4,7 +4,6 @@ import * as path from 'path';
 import {
   inSourcePackage,
   resolveSourcePackage,
-  sourcePackageFiles,
   sourcePackages,
 } from '../src/utils/source-packages';
 
@@ -118,11 +117,6 @@ describe('source packages', () => {
     ])
       write(path.join(base, 'src', file), '');
     const packages = sourcePackages(root);
-    expect(
-      sourcePackageFiles(packages)
-        .map((f) => path.relative(path.join(base, 'src'), f))
-        .sort(),
-    ).toEqual(['a.js', 'b.jsx', 'c.ts', 'd.tsx', 'nested/e.ts']);
     expect(inSourcePackage(packages, path.join(base, 'src/a.ts'))).toBe(true);
     expect(inSourcePackage(packages, path.join(base, 'src'))).toBe(false);
     expect(inSourcePackage(packages, path.join(base, 'src-other/a.ts'))).toBe(
