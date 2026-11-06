@@ -146,4 +146,23 @@ describe('source packages', () => {
       path.join(base, 'src/typed/item.ts'),
     );
   });
+
+  test('reads the typedcss condition as well', () => {
+    write(path.join(root, 'package.json'), { dependencies: { pkg: '*' } });
+    const base = path.join(root, 'node_modules/pkg');
+    write(path.join(base, 'package.json'), {
+      exports: {
+        '.': { typedcss: './src/index.ts', default: './dist/index.js' },
+        './*': { typedcss: './src/*.ts' },
+      },
+    });
+    const packages = sourcePackages(root);
+    expect(packages[0].sourceDirs).toEqual([path.join(base, 'src')]);
+    expect(resolveSourcePackage(packages, 'pkg')).toBe(
+      path.join(base, 'src/index.ts'),
+    );
+    expect(resolveSourcePackage(packages, 'pkg/item')).toBe(
+      path.join(base, 'src/item.ts'),
+    );
+  });
 });
