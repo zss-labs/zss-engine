@@ -24,8 +24,16 @@ const subpathMap = (exports: unknown) =>
     ? exports
     : null;
 
-const sourceTarget = (entry: unknown): string | null =>
-  isObject(entry) && typeof entry.plumeria === 'string' ? entry.plumeria : null;
+const SOURCE_CONDITIONS = ['plumeria', 'typedcss'];
+
+const sourceTarget = (entry: unknown): string | null => {
+  if (!isObject(entry)) return null;
+  for (const condition of SOURCE_CONDITIONS) {
+    const target = entry[condition];
+    if (typeof target === 'string') return target;
+  }
+  return null;
+};
 
 const sourceDirsOf = (dir: string, exports: unknown): string[] => {
   const map = subpathMap(exports);
