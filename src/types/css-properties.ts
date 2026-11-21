@@ -1,11 +1,11 @@
-import type { Properties } from 'csstype';
+import type { CSSDefs } from 'cssdefs';
 
 type CSSVariableKey = `--${string}`;
 type CSSVariableValue = `var(${CSSVariableKey})`;
 type CSSVariableProperty = { [key: CSSVariableKey]: string | number };
 
 type BaseCSSProperties = {
-  [K in keyof Properties]: Properties[K] | CSSVariableValue;
+  [K in keyof CSSDefs]: CSSDefs[K] | CSSVariableValue;
 };
 
 type ArrayString = `[${string}`;
