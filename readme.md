@@ -8,4 +8,4 @@ A CSS-in-JS transpiler engine for building zero-runtime stylesheets at build tim
 
 ## License
 
-[MIT](https://github.com/zss-in-js/zss-engine/blob/main/license) License &copy; 2023-PRESENT [Refirst 11](https://github.com/refirst11)
+[MIT](https://github.com/zss-in-js/zss-engine/blob/main/license) License &copy; 2023-PRESENT [zss-labs](https://github.com/zss-labs)
