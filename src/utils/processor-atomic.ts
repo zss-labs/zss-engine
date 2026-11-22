@@ -30,17 +30,11 @@ function walkAtomicProps(
   flatProps: CSSProperties,
   atomicMap: Map<string, string>,
   atRules: string[],
-  hashLength: number,
 ) {
   const resultQueue: Array<[string, string | number]> = [];
   for (const [key, style] of Object.entries(flatProps)) {
     if (isAtRule(key)) {
-      walkAtomicProps(
-        style as CSSProperties,
-        atomicMap,
-        [...atRules, key],
-        hashLength,
-      );
+      walkAtomicProps(style as CSSProperties, atomicMap, [...atRules, key]);
       continue;
     }
 
@@ -54,7 +48,7 @@ function walkAtomicProps(
     for (let i = atRules.length - 1; i >= 0; i--) {
       hashSource = { [atRules[i]]: hashSource };
     }
-    const atomicHash = genBase36Hash(hashSource, 1, hashLength);
+    const atomicHash = genBase36Hash(hashSource, 1, 8);
 
     if (atomicMap.has(atomicHash)) continue;
 
@@ -70,14 +64,8 @@ function processAtomicProps(
   flatProps: CSSProperties,
   atomicMap: Map<string, string>,
   parentAtRule?: string,
-  hashLength = 8,
 ) {
-  walkAtomicProps(
-    flatProps,
-    atomicMap,
-    parentAtRule ? [parentAtRule] : [],
-    hashLength,
-  );
+  walkAtomicProps(flatProps, atomicMap, parentAtRule ? [parentAtRule] : []);
 }
 
 export { splitAtomicAndNested, processAtomicProps };
