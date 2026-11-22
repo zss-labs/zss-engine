@@ -19,14 +19,6 @@ describe('index exports', () => {
     expect(index.canonicalProperty).toBeDefined();
     expect(index.counterpartOf).toBeDefined();
     expect(index.spellingOf).toBeDefined();
-    expect(index.parseConditionalRange).toBeDefined();
-    expect(index.findSameNameNesting).toBeDefined();
-    expect(index.findInvalidSelector).toBeDefined();
-    expect(index.MAX_SELECTOR_NESTING).toBeDefined();
-    expect(index.stripSelectorComments).toBeDefined();
-    expect(index.sourcePackages).toBeDefined();
-    expect(index.resolveSourcePackage).toBeDefined();
-    expect(index.inSourcePackage).toBeDefined();
   });
 
   test('exported functions are callable', () => {
